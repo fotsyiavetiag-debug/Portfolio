@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio de Iavetia FOTSY, Data Analyst Junior disponible pour projets freelance, analyse de donnees, dashboards et recherche appliquee.">
+  <title>Iavetia FOTSY | Data Analyst Junior</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0A0F1E;
+      --surface: #111827;
+      --surface-soft: rgba(17, 24, 39, 0.74);
+      --glass: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --accent: #00D4AA;
+      --accent-40: rgba(0, 212, 170, 0.4);
+      --accent-55: rgba(0, 212, 170, 0.55);
+      --accent-secondary: #6C63FF;
+      --text: #F1F5F9;
+      --muted: #94A3B8;
+      --muted-2: #CBD5E1;
+      --dangerless-green: #22C55E;
+      --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-title: 'Space Grotesk', var(--font-body);
+      --font-code: 'Fira Code', ui-monospace, SFMono-Regular, Consolas, monospace;
+      --container: min(1120px, calc(100% - 40px));
+      --radius: 8px;
+      --radius-lg: 18px;
+      --space-xs: 0.5rem;
+      --space-sm: 0.75rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3.5rem;
+      --shadow-teal: 0 20px 40px rgba(0, 212, 170, 0.15);
+      --shadow-nav: 0 12px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 22% 12%, rgba(0, 212, 170, 0.08), transparent 32rem),
+        radial-gradient(circle at 78% 8%, rgba(108, 99, 255, 0.09), transparent 28rem),
+        var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.7;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      border: 0;
+    }
+
+    img,
+    canvas {
+      max-width: 100%;
+      display: block;
+    }
+
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1001;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+      box-shadow: 0 0 18px var(--accent-55);
+      transition: width 0.1s linear;
+    }
+
+    .container {
+      width: var(--container);
+      margin-inline: auto;
+    }
+
+    .section {
+      position: relative;
+      padding: 6.5rem 0;
+    }
+
+    .section-header {
+      max-width: 720px;
+      margin-bottom: 2.5rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.85rem;
+      color: var(--accent);
+      font-family: var(--font-code);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.8;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--font-title);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.15rem);
+    }
+
+    h3 {
+      font-size: clamp(1.25rem, 2vw, 1.55rem);
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 1000;
+      background: rgba(10, 15, 30, 0.68);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--accent-40);
+      transition: box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .nav.scrolled {
+      background: rgba(10, 15, 30, 0.86);
+      box-shadow: var(--shadow-nav);
+    }
+
+    .nav-inner {
+      width: var(--container);
+      min-height: 74px;
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      color: var(--accent);
+      font-family: var(--font-title);
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      position: relative;
+      display: inline-flex;
+      padding: 0.35rem 0;
+      color: var(--muted-2);
+      font-size: 0.94rem;
+      font-weight: 600;
+      transition: color 0.25s ease;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.25s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--text);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .hamburger {
+      display: none;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius);
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: var(--text);
+    }
+
+    .hamburger span {
+      position: relative;
+      width: 19px;
+      height: 2px;
+      background: currentColor;
+      transition: background 0.2s ease;
+    }
+
+    .hamburger span::before,
+    .hamburger span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 19px;
+      height: 2px;
+      background: currentColor;
+      transition: transform 0.25s ease, top 0.25s ease;
+    }
+
+    .hamburger span::before {
+      top: -7px;
+    }
+
+    .hamburger span::after {
+      top: 7px;
+    }
+
+    .hamburger.active span {
+      background: transparent;
+    }
+
+    .hamburger.active span::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+
+    .hamburger.active span::after {
+      top: 0;
+      transform: rotate(-45deg);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      padding: 7rem 0 4rem;
+    }
+
+    #dataCanvas {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.62;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      z-index: 1;
+      height: 18vh;
+      background: linear-gradient(180deg, transparent, var(--bg));
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: var(--container);
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(260px, 0.65fr);
+      align-items: center;
+      gap: clamp(2rem, 5vw, 5rem);
+    }
+
+    .hero-kicker {
+      min-height: 2.3rem;
+      color: var(--accent);
+      font-family: var(--font-code);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 600;
+    }
+
+    .type-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.15em;
+      margin-left: 0.25rem;
+      vertical-align: -0.18em;
+      background: var(--accent);
+      animation: blink 0.85s steps(1) infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .hero h1 {
+      margin: 0.75rem 0 1rem;
+      font-size: clamp(3.2rem, 8vw, 6.6rem);
+    }
+
+    .hero-lead {
+      max-width: 660px;
+      color: var(--muted-2);
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      font-weight: 500;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.4rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.75rem;
+      border: 1px solid var(--accent-40);
+      border-radius: 999px;
+      background: rgba(17, 24, 39, 0.55);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0.85rem 1.35rem;
+      border-radius: var(--radius);
+      font-weight: 800;
+      letter-spacing: 0;
+      transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: scale(1.03);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #03110e;
+      box-shadow: 0 14px 26px rgba(0, 212, 170, 0.22);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background: #38f0cd;
+      box-shadow: 0 18px 34px rgba(0, 212, 170, 0.28);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--accent-55);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.035);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-outline:hover,
+    .btn-outline:focus-visible {
+      border-color: var(--accent-secondary);
+      background: rgba(108, 99, 255, 0.12);
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 430px;
+      display: grid;
+      place-items: center;
+    }
+
+    .avatar-wrap {
+      position: relative;
+      width: min(360px, 78vw);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+    }
+
+    .avatar-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background:
+        conic-gradient(from 140deg, var(--accent), var(--accent-secondary), rgba(0, 212, 170, 0.25), var(--accent));
+      filter: drop-shadow(0 0 42px rgba(0, 212, 170, 0.25));
+      animation: rotateRing 16s linear infinite;
+    }
+
+    .avatar {
+      position: relative;
+      width: 78%;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 1px solid rgba(241, 245, 249, 0.18);
+      background:
+        radial-gradient(circle at 34% 26%, rgba(255, 255, 255, 0.22), transparent 22%),
+        linear-gradient(145deg, rgba(0, 212, 170, 0.92), rgba(108, 99, 255, 0.88));
+      color: white;
+      font-family: var(--font-title);
+      font-size: clamp(4.5rem, 10vw, 7.5rem);
+      font-weight: 700;
+      box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.08), 0 28px 70px rgba(0, 0, 0, 0.28);
+    }
+
+    .floating-card {
+      position: absolute;
+      display: grid;
+      gap: 0.1rem;
+      min-width: 132px;
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius);
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 16px 35px rgba(0, 0, 0, 0.2);
+      animation: floatCard 5s ease-in-out infinite;
+    }
+
+    .floating-card strong {
+      color: var(--accent);
+      font-family: var(--font-title);
+      font-size: 1.35rem;
+      line-height: 1;
+    }
+
+    .floating-card span {
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.35;
+    }
+
+    .floating-card.card-a {
+      left: 0;
+      top: 18%;
+    }
+
+    .floating-card.card-b {
+      right: 0;
+      bottom: 16%;
+      animation-delay: -2s;
+    }
+
+    @keyframes rotateRing {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes floatCard {
+      50% { transform: translateY(-12px); }
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.78fr);
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: start;
+    }
+
+    .about-copy {
+      color: var(--muted-2);
+      font-size: 1.04rem;
+    }
+
+    .about-copy p + p {
+      margin-top: 1rem;
+    }
+
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-top: 1.35rem;
+      padding: 0.62rem 0.85rem;
+      border: 1px solid var(--accent-40);
+      border-radius: 999px;
+      background: rgba(0, 212, 170, 0.08);
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .language-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+
+    .language-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0.38rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 212, 170, 0.36);
+      background: rgba(255, 255, 255, 0.035);
+      color: var(--muted-2);
+      font-family: var(--font-code);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .pulse {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--dangerless-green);
+      box-shadow: 0 0 0 rgba(34, 197, 94, 0.65);
+      animation: pulse 1.55s infinite;
+    }
+
+    @keyframes pulse {
+      70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .stat-card,
+    .glass-card {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+    }
+
+    .stat-card {
+      min-height: 146px;
+      padding: 1.25rem;
+      border-color: var(--accent-40);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .stat-card strong {
+      color: var(--accent);
+      font-family: var(--font-title);
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1;
+    }
+
+    .stat-card span {
+      color: var(--muted-2);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .skills-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.8fr);
+      gap: clamp(2rem, 4vw, 3rem);
+      align-items: start;
+    }
+
+    .skill-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .skill-item {
+      padding: 1.05rem;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid var(--accent-40);
+      border-radius: var(--radius);
+    }
+
+    .skill-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .skill-name {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .skill-value {
+      color: var(--accent);
+      font-family: var(--font-code);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .skill-track {
+      height: 9px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.16);
+    }
+
+    .skill-bar {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+      box-shadow: 0 0 18px rgba(0, 212, 170, 0.35);
+      transition: width 1.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .tool-panel {
+      padding: 1.25rem;
+    }
+
+    .tool-panel h3 {
+      margin-bottom: 1rem;
+    }
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .tool-badge {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.8rem;
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(0, 212, 170, 0.3);
+      transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+    }
+
+    .tool-badge:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-secondary);
+      background: rgba(108, 99, 255, 0.1);
+    }
+
+    .tool-icon {
+      width: 40px;
+      height: 40px;
+      flex: 0 0 40px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius);
+      color: white;
+      font-family: var(--font-code);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .tool-badge span:last-child {
+      color: var(--muted-2);
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .excel { background: #15803d; }
+    .sql { background: #2563eb; }
+    .python { background: linear-gradient(135deg, #3776ab, #ffd43b); color: #101827; }
+    .powerbi { background: #f2c811; color: #101827; }
+    .spss { background: #0f766e; }
+    .seaborn { background: #7c3aed; }
+    .pandas { background: #150458; }
+    .matplotlib { background: #dc2626; }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 430px;
+      display: flex;
+      flex-direction: column;
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent-55);
+      box-shadow: var(--shadow-teal);
+    }
+
+    .project-strip {
+      height: 8px;
+    }
+
+    .project-strip.market { background: linear-gradient(90deg, #00D4AA, #22C55E, #FACC15); }
+    .project-strip.weather { background: linear-gradient(90deg, #38BDF8, #6C63FF, #00D4AA); }
+    .project-strip.impact { background: linear-gradient(90deg, #A855F7, #F97316, #00D4AA); }
+
+    .project-body {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .project-tools,
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .project-tools {
+      margin: 1rem 0;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0.32rem 0.62rem;
+      border-radius: 999px;
+      color: var(--text);
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: rgba(0, 212, 170, 0.11);
+      border: 1px solid var(--accent-40);
+    }
+
+    .pill.secondary {
+      background: rgba(108, 99, 255, 0.12);
+      border-color: rgba(108, 99, 255, 0.5);
+    }
+
+    .project-desc {
+      color: var(--muted-2);
+      margin-bottom: 1.1rem;
+    }
+
+    .tag-row {
+      margin-top: auto;
+      padding-top: 1rem;
+    }
+
+    .details-btn {
+      align-self: flex-start;
+      margin-top: 1.2rem;
+      color: var(--accent);
+      background: transparent;
+      font-weight: 800;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .details-btn:hover,
+    .details-btn:focus-visible {
+      color: var(--accent-secondary);
+      transform: translateX(4px);
+      outline: 0;
+    }
+
+    .experience-wrap {
+      position: relative;
+      max-width: 920px;
+      margin-left: auto;
+      padding-right: 1.8rem;
+    }
+
+    .experience-wrap::after {
+      content: "";
+      position: absolute;
+      top: 0.4rem;
+      right: 0;
+      width: 2px;
+      height: calc(100% - 0.8rem);
+      background: linear-gradient(180deg, transparent, var(--accent), transparent);
+      box-shadow: 0 0 20px rgba(0, 212, 170, 0.75);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.2rem;
+      padding: 1.2rem 1.35rem;
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: opacity 0.65s ease, transform 0.65s ease, border-color 0.25s ease;
+    }
+
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .timeline-item::after {
+      content: "";
+      position: absolute;
+      top: 1.45rem;
+      right: -2.1rem;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(0, 212, 170, 0.12), 0 0 18px var(--accent);
+    }
+
+    .timeline-role {
+      color: var(--text);
+      font-size: 1.12rem;
+      font-weight: 800;
+    }
+
+    .timeline-company {
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .timeline-date {
+      margin: 0.25rem 0 0.65rem;
+      color: var(--muted);
+      font-family: var(--font-code);
+      font-size: 0.86rem;
+    }
+
+    .timeline-desc {
+      color: var(--muted-2);
+    }
+
+    .cert-section {
+      overflow: hidden;
+    }
+
+    .cert-track {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 0.2rem 0 1rem;
+      scrollbar-color: var(--accent) rgba(148, 163, 184, 0.12);
+    }
+
+    .cert-card {
+      min-width: 285px;
+      scroll-snap-align: start;
+      padding: 1.15rem;
+      border-left: 4px solid var(--accent);
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--glass-border);
+      border-right: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      transition: transform 0.22s ease, border-left-color 0.22s ease;
+    }
+
+    .cert-card:hover {
+      transform: translateY(-5px);
+      border-left-color: var(--accent-secondary);
+    }
+
+    .cert-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 0.85rem;
+      border-radius: 50%;
+      color: #03110e;
+      background: var(--accent);
+      font-weight: 900;
+    }
+
+    .cert-card h3 {
+      font-size: 1.05rem;
+      line-height: 1.2;
+    }
+
+    .cert-card p {
+      margin-top: 0.5rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .contact {
+      background:
+        linear-gradient(180deg, rgba(17, 24, 39, 0.2), rgba(17, 24, 39, 0.7)),
+        var(--bg);
+    }
+
+    .contact-inner {
+      max-width: 870px;
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .contact-inner .section-header {
+      margin-inline: auto;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+      text-align: left;
+    }
+
+    .contact-card {
+      padding: 1rem;
+      transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-55);
+      background: rgba(0, 212, 170, 0.06);
+    }
+
+    .contact-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 0.75rem;
+      border-radius: var(--radius);
+      background: rgba(0, 212, 170, 0.12);
+      border: 1px solid var(--accent-40);
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .contact-card strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: var(--text);
+    }
+
+    .contact-card a,
+    .contact-card span {
+      color: var(--muted-2);
+      overflow-wrap: anywhere;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 1rem;
+      padding: 1.2rem;
+      text-align: left;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .field {
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    .field label {
+      color: var(--muted-2);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      color: var(--text);
+      background: rgba(10, 15, 30, 0.78);
+      border: 1px solid rgba(0, 212, 170, 0.28);
+      border-radius: var(--radius);
+      outline: 0;
+      padding: 0.9rem 1rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .field textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--accent);
+      background: rgba(10, 15, 30, 0.94);
+      box-shadow: 0 0 0 4px rgba(0, 212, 170, 0.09);
+    }
+
+    .contact-form .btn {
+      justify-self: start;
+    }
+
+    .footer {
+      padding: 2rem 0;
+      border-top: 1px solid var(--accent-40);
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 0.8rem;
+    }
+
+    .social-link {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--accent-40);
+      color: var(--text);
+      font-family: var(--font-code);
+      font-size: 0.82rem;
+      font-weight: 700;
+      transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
+    }
+
+    .social-link:hover,
+    .social-link:focus-visible {
+      transform: translateY(-3px);
+      background: rgba(108, 99, 255, 0.14);
+      border-color: var(--accent-secondary);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background: rgba(3, 7, 18, 0.72);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      transition: opacity 0.22s ease;
+    }
+
+    .modal.open {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-card {
+      position: relative;
+      width: min(720px, 100%);
+      max-height: min(760px, calc(100vh - 2rem));
+      overflow-y: auto;
+      padding: clamp(1.2rem, 4vw, 2rem);
+      border-radius: var(--radius-lg);
+      background: rgba(17, 24, 39, 0.96);
+      border: 1px solid var(--accent-40);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+      transform: scale(0.94);
+      transition: transform 0.22s ease;
+    }
+
+    .modal.open .modal-card {
+      transform: scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--glass-border);
+      color: var(--text);
+      font-size: 1.35rem;
+      line-height: 1;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .modal-close:hover,
+    .modal-close:focus-visible {
+      transform: rotate(90deg);
+      background: rgba(0, 212, 170, 0.12);
+    }
+
+    .modal h3 {
+      padding-right: 3rem;
+      margin-bottom: 0.75rem;
+      font-size: clamp(1.65rem, 4vw, 2.35rem);
+    }
+
+    .modal-tools {
+      margin: 1rem 0 1.2rem;
+    }
+
+    .modal p {
+      color: var(--muted-2);
+    }
+
+    .modal ul {
+      margin: 1.15rem 0 0;
+      padding-left: 1.2rem;
+      color: var(--muted-2);
+    }
+
+    .modal li + li {
+      margin-top: 0.45rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    @media (max-width: 960px) {
+      .hero-content,
+      .about-grid,
+      .skills-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-content {
+        text-align: center;
+      }
+
+      .hero-lead {
+        margin-inline: auto;
+      }
+
+      .hero-meta,
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-visual {
+        min-height: 350px;
+      }
+
+      .projects-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      :root {
+        --container: min(100% - 28px, 1120px);
+      }
+
+      .section {
+        padding: 5rem 0;
+      }
+
+      .hamburger {
+        display: inline-flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 0.65rem 14px 1rem;
+        background: rgba(10, 15, 30, 0.94);
+        border-bottom: 1px solid var(--accent-40);
+        transform: translateY(-14px);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+      }
+
+      .nav-links.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .nav-link {
+        padding: 0.85rem 0.4rem;
+      }
+
+      .hero {
+        padding-top: 6.5rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(3rem, 15vw, 4.4rem);
+      }
+
+      .hero-visual {
+        min-height: 300px;
+      }
+
+      .floating-card {
+        min-width: 118px;
+        padding: 0.7rem;
+      }
+
+      .stats-grid,
+      .tool-grid,
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .experience-wrap {
+        padding-left: 1.5rem;
+        padding-right: 0;
+        margin-left: 0;
+      }
+
+      .experience-wrap::after {
+        left: 0;
+        right: auto;
+      }
+
+      .timeline-item::after {
+        left: -1.94rem;
+        right: auto;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .hero-actions .btn,
+      .contact-form .btn {
+        width: 100%;
+      }
+
+      .avatar-wrap {
+        width: min(280px, 82vw);
+      }
+
+      .floating-card.card-a {
+        left: -4px;
+      }
+
+      .floating-card.card-b {
+        right: -4px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <nav class="nav" id="nav" aria-label="Navigation principale">
+    <div class="nav-inner">
+      <a class="logo" href="#accueil" aria-label="Retour a l'accueil">IF.</a>
+      <button class="hamburger" id="menuToggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
+        <span aria-hidden="true"></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a class="nav-link" href="#apropos">À propos</a></li>
+        <li><a class="nav-link" href="#competences">Compétences</a></li>
+        <li><a class="nav-link" href="#projets">Projets</a></li>
+        <li><a class="nav-link" href="#experience">Expérience</a></li>
+        <li><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero section" id="accueil" aria-label="Presentation">
+      <canvas id="dataCanvas" aria-hidden="true"></canvas>
+      <div class="hero-content">
+        <div>
+          <div class="hero-kicker" aria-live="polite">
+            <span id="typedText"></span><span class="type-cursor" aria-hidden="true"></span>
+          </div>
+          <h1>Iavetia FOTSY</h1>
+          <p class="hero-lead">Transformer les données brutes en décisions qui comptent.</p>
+          <div class="hero-meta" aria-label="Informations rapides">
+            <span>Data Analyst Junior</span>
+            <span>Toamasina, Madagascar</span>
+            <span>Freelance & missions ponctuelles</span>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projets">Voir mes travaux</a>
+            <a class="btn btn-outline" href="#" id="downloadCv">Télécharger mon CV</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="avatar-wrap">
+            <div class="avatar-ring"></div>
+            <div class="avatar">IF</div>
+            <div class="floating-card card-a">
+              <strong>88%</strong>
+              <span>Suivi-évaluation</span>
+            </div>
+            <div class="floating-card card-b">
+              <strong>10K+</strong>
+              <span>Lignes analysées</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="apropos">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">À propos</span>
+          <h2>Une analyste qui relie économie terrain, recherche et data moderne.</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-copy reveal">
+            <p>Iavetia FOTSY accompagne les organisations qui veulent comprendre leurs données avant de décider. Son parcours combine administration financière, études économiques, suivi-évaluation et analyse statistique appliquée aux enjeux de développement à Madagascar.</p>
+            <p>Elle fait le pont entre l'économie agricole, la collecte terrain et les outils modernes de data analysis : Python, SQL, Power BI, Excel avancé, SPSS et XLStat. Sa force est de transformer des données dispersées en synthèses claires, visualisations lisibles et recommandations actionnables.</p>
+            <div class="availability"><span class="pulse" aria-hidden="true"></span>Disponible pour des projets</div>
+            <div class="language-strip" aria-label="Langues parlees">
+              <span class="language-chip">Malgache · Langue maternelle</span>
+              <span class="language-chip">Français · C2</span>
+              <span class="language-chip">Anglais · C1</span>
+              <span class="language-chip">Allemand · A2</span>
+            </div>
+          </div>
+          <div class="stats-grid reveal" aria-label="Statistiques professionnelles">
+            <div class="stat-card">
+              <strong><span class="counter" data-target="7">0</span>+</strong>
+              <span>Ans d'Expérience</span>
+            </div>
+            <div class="stat-card">
+              <strong><span class="counter" data-target="4">0</span></strong>
+              <span>Outils Maîtrisés</span>
+            </div>
+            <div class="stat-card">
+              <strong><span class="counter" data-target="10">0</span>K+</strong>
+              <span>Lignes Analysées</span>
+            </div>
+            <div class="stat-card">
+              <strong><span class="counter" data-target="3">0</span></strong>
+              <span>Projets de Recherche</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="competences">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">Compétences</span>
+          <h2>Un socle analytique solide, de la préparation des données à la décision.</h2>
+        </div>
+        <div class="skills-layout">
+          <div class="skill-list reveal" aria-label="Niveaux de competences">
+            <div class="skill-item"><div class="skill-top"><span class="skill-name">Excel Avancé</span><span class="skill-value">90%</span></div><div class="skill-track"><div class="skill-bar" data-width="90"></div></div></div>
+            <div class="skill-item"><div class="skill-top"><span class="skill-name">SQL</span><span class="skill-value">80%</span></div><div class="skill-track"><div class="skill-bar" data-width="80"></div></div></div>
+            <div class="skill-item"><div class="skill-top"><span class="skill-name">Python (pandas, numpy, matplotlib, seaborn)</span><span class="skill-value">78%</span></div><div class="skill-track"><div class="skill-bar" data-width="78"></div></div></div>
+            <div class="skill-item"><div class="skill-top"><span class="skill-name">Power BI</span><span class="skill-value">82%</span></div><div class="skill-track"><div class="skill-bar" data-width="82"></div></div></div>
+            <div class="skill-item"><div class="skill-top"><span class="skill-name">IBM SPSS / XLStat</span><span class="skill-value">75%</span></div><div class="skill-track"><div class="skill-bar" data-width="75"></div></div></div>
+            <div class="skill-item"><div class="skill-top"><span class="skill-name">Visualisation de données</span><span class="skill-value">85%</span></div><div class="skill-track"><div class="skill-bar" data-width="85"></div></div></div>
+            <div class="skill-item"><div class="skill-top"><span class="skill-name">Modélisation statistique / Économétrie</span><span class="skill-value">80%</span></div><div class="skill-track"><div class="skill-bar" data-width="80"></div></div></div>
+            <div class="skill-item"><div class="skill-top"><span class="skill-name">Suivi-Évaluation / Évaluation d'impact</span><span class="skill-value">88%</span></div><div class="skill-track"><div class="skill-bar" data-width="88"></div></div></div>
+          </div>
+          <aside class="tool-panel glass-card reveal" aria-label="Outils maitrises">
+            <h3>Stack d'analyse</h3>
+            <div class="tool-grid">
+              <div class="tool-badge"><span class="tool-icon excel">XLS</span><span>Excel</span></div>
+              <div class="tool-badge"><span class="tool-icon sql">SQL</span><span>SQL</span></div>
+              <div class="tool-badge"><span class="tool-icon python">Py</span><span>Python</span></div>
+              <div class="tool-badge"><span class="tool-icon powerbi">BI</span><span>Power BI</span></div>
+              <div class="tool-badge"><span class="tool-icon spss">SP</span><span>SPSS</span></div>
+              <div class="tool-badge"><span class="tool-icon seaborn">Sb</span><span>Seaborn</span></div>
+              <div class="tool-badge"><span class="tool-icon pandas">pd</span><span>pandas</span></div>
+              <div class="tool-badge"><span class="tool-icon matplotlib">Mt</span><span>Matplotlib</span></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projets">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">Projets</span>
+          <h2>Des analyses conçues pour livrer une réponse claire, pas seulement des graphiques.</h2>
+        </div>
+        <div class="projects-grid">
+          <article class="project-card reveal">
+            <div class="project-strip market"></div>
+            <div class="project-body">
+              <h3>Analyse E-Commerce AfriMarket</h3>
+              <div class="project-tools"><span class="pill">Python</span><span class="pill secondary">pandas</span><span class="pill">seaborn</span><span class="pill secondary">matplotlib</span></div>
+              <p class="project-desc">Pipeline de données complet sur plus de 10 000 lignes : nettoyage, feature engineering, segmentation client, visualisations et synthèse exécutive.</p>
+              <div class="tag-row"><span class="pill">EDA</span><span class="pill">Nettoyage de données</span><span class="pill">Visualisation</span></div>
+              <button class="details-btn" type="button" data-project="market" aria-label="Voir les details du projet Analyse E-Commerce AfriMarket">Voir les détails</button>
+            </div>
+          </article>
+          <article class="project-card reveal">
+            <div class="project-strip weather"></div>
+            <div class="project-body">
+              <h3>Dashboard de Données Météorologiques</h3>
+              <div class="project-tools"><span class="pill">Python</span><span class="pill secondary">API Open-Meteo</span><span class="pill">Architecture modulaire</span></div>
+              <p class="project-desc">Extraction et analyse automatisées de données météo pour Madagascar via API REST, avec synthèses statistiques et tendances visualisées.</p>
+              <div class="tag-row"><span class="pill">API</span><span class="pill">Pipeline de données</span><span class="pill">Statistiques</span></div>
+              <button class="details-btn" type="button" data-project="weather" aria-label="Voir les details du projet Dashboard de Donnees Meteorologiques">Voir les détails</button>
+            </div>
+          </article>
+          <article class="project-card reveal">
+            <div class="project-strip impact"></div>
+            <div class="project-body">
+              <h3>Étude d'Impact de l'Aide au Développement</h3>
+              <div class="project-tools"><span class="pill">IBM SPSS</span><span class="pill secondary">XLStat</span><span class="pill">Panel</span></div>
+              <p class="project-desc">Recherche académique mesurant l'impact causal de l'aide publique au développement sur l'économie malgache par méthodes économétriques.</p>
+              <div class="tag-row"><span class="pill">Économétrie</span><span class="pill">Données de Panel</span><span class="pill">Recherche Politique</span></div>
+              <button class="details-btn" type="button" data-project="impact" aria-label="Voir les details du projet Etude d'Impact de l'Aide au Developpement">Voir les détails</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">Expérience</span>
+          <h2>Une progression ancrée dans les opérations, le terrain et l'analyse économique.</h2>
+        </div>
+        <div class="experience-wrap">
+          <article class="timeline-item glass-card">
+            <h3 class="timeline-role">Assistante Administrative et Financière</h3>
+            <div class="timeline-company">AMBATOVY</div>
+            <div class="timeline-date">2022-Présent</div>
+            <p class="timeline-desc">Suivi administratif et financier dans un environnement exigeant. Consolidation d'informations, contrôle documentaire et appui aux décisions opérationnelles.</p>
+          </article>
+          <article class="timeline-item glass-card">
+            <h3 class="timeline-role">Consultante Données Terrain</h3>
+            <div class="timeline-company">ONG Mahavila</div>
+            <div class="timeline-date">2022</div>
+            <p class="timeline-desc">Collecte, structuration et fiabilisation de données issues du terrain. Contribution aux synthèses de suivi pour orienter les actions de programme.</p>
+          </article>
+          <article class="timeline-item glass-card">
+            <h3 class="timeline-role">Consultante Suivi-Évaluation</h3>
+            <div class="timeline-company">Direction Régionale de l'Agriculture</div>
+            <div class="timeline-date">2019</div>
+            <p class="timeline-desc">Appui au suivi-évaluation de projets agricoles. Analyse d'indicateurs, préparation de rapports et lecture des résultats pour les parties prenantes.</p>
+          </article>
+          <article class="timeline-item glass-card">
+            <h3 class="timeline-role">Stagiaire Analyse Économique</h3>
+            <div class="timeline-company">Coopérative Fanohana</div>
+            <div class="timeline-date">2019</div>
+            <p class="timeline-desc">Premières analyses économiques appliquées au secteur coopératif. Traitement de données, restitution de tendances et formulation de constats utiles.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cert-section" id="certifications">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">Certifications</span>
+          <h2>Une formation continue orientée recherche, data et développement.</h2>
+        </div>
+        <div class="cert-track reveal" aria-label="Liste des certifications">
+          <article class="cert-card"><div class="cert-icon">✓</div><h3>Fondamentaux de la Recherche Reproductible</h3><p>Banque Mondiale · 2025</p></article>
+          <article class="cert-card"><div class="cert-icon">Py</div><h3>Python pour l'Analyse de Données</h3><p>FUN-MOOC · En cours, 2025</p></article>
+          <article class="cert-card"><div class="cert-icon">GP</div><h3>Gestion de Projets de Développement</h3><p>Université Senghor & IFDD · 2022</p></article>
+          <article class="cert-card"><div class="cert-icon">YA</div><h3>Business & Entrepreneuriat YALI</h3><p>CRL Dakar · 2022</p></article>
+          <article class="cert-card"><div class="cert-icon">US</div><h3>Certificat de Reconnaissance</h3><p>Ambassade des États-Unis à Madagascar · 2025</p></article>
+          <article class="cert-card"><div class="cert-icon">C2</div><h3>DALF C2</h3><p>Alliance Française · 2022</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="container">
+        <div class="contact-inner">
+          <div class="section-header reveal">
+            <span class="eyebrow">Contact</span>
+            <h2>Travaillons ensemble.</h2>
+            <p class="muted">Disponible pour des projets d'analyse de données, du conseil et de la collaboration en recherche.</p>
+          </div>
+          <div class="contact-grid reveal">
+            <div class="contact-card glass-card">
+              <div class="contact-icon">@</div>
+              <strong>Email</strong>
+              <a href="mailto:fotsyiavetia.g@gmail.com">fotsyiavetia.g@gmail.com</a>
+            </div>
+            <div class="contact-card glass-card">
+              <div class="contact-icon">☎</div>
+              <strong>Téléphone</strong>
+              <a href="tel:+261322247026">+261 32 22 470 26</a><br>
+              <a href="tel:+261345356545">+261 34 53 565 45</a>
+            </div>
+            <div class="contact-card glass-card">
+              <div class="contact-icon">⌖</div>
+              <strong>Localisation</strong>
+              <span>Toamasina, Madagascar</span>
+            </div>
+          </div>
+          <form class="contact-form glass-card reveal" action="mailto:fotsyiavetia.g@gmail.com" method="post" enctype="text/plain">
+            <div class="form-row">
+              <div class="field">
+                <label for="name">Nom</label>
+                <input id="name" name="Nom" type="text" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="Email" type="email" autocomplete="email" required>
+              </div>
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="Message" required></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Envoyer</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Iavetia FOTSY · Data Analyst · 2026</p>
+      <div class="socials" aria-label="Liens sociaux">
+        <a class="social-link" href="mailto:fotsyiavetia.g@gmail.com" aria-label="Email">EM</a>
+        <a class="social-link" href="tel:+261322247026" aria-label="Telephone">TL</a>
+        <a class="social-link" href="#projets" aria-label="Projets">PR</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDescription">
+    <div class="modal-card" tabindex="-1">
+      <button class="modal-close" type="button" aria-label="Fermer la fenetre modale">&times;</button>
+      <h3 id="modalTitle"></h3>
+      <div class="project-tools modal-tools" id="modalTools"></div>
+      <p id="modalDescription"></p>
+      <ul id="modalList"></ul>
+    </div>
+  </div>
+
+  <script>
+    const nav = document.getElementById('nav');
+    const navLinks = document.getElementById('navLinks');
+    const menuToggle = document.getElementById('menuToggle');
+    const scrollProgress = document.getElementById('scrollProgress');
+    const typedText = document.getElementById('typedText');
+    const sections = [...document.querySelectorAll('main section[id]')];
+    const links = [...document.querySelectorAll('.nav-link')];
+    let ticking = false;
+
+    function debounceFrame(callback) {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          callback();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    function updateScrollState() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      scrollProgress.style.width = `${progress}%`;
+      nav.classList.toggle('scrolled', scrollTop > 24);
+
+      let currentId = sections[0].id;
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop - 110;
+        if (scrollTop >= sectionTop) currentId = section.id;
+      });
+
+      links.forEach((link) => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${currentId}`);
+      });
+    }
+
+    window.addEventListener('scroll', () => debounceFrame(updateScrollState), { passive: true });
+    window.addEventListener('load', updateScrollState);
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.classList.toggle('active', isOpen);
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
+    });
+
+    links.forEach((link) => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Ouvrir le menu');
+      });
+    });
+
+    document.getElementById('downloadCv').addEventListener('click', (event) => {
+      event.preventDefault();
+      const cvText = `Iavetia FOTSY
+Data Analyst Junior | Disponible pour projets freelance et missions ponctuelles
+Toamasina, Madagascar
+Email : fotsyiavetia.g@gmail.com
+Telephone : +261 32 22 470 26 / +261 34 53 565 45
+
+Accroche
+Transformer les donnees brutes en decisions qui comptent.
+
+Competences
+- Excel Avance : 90%
+- SQL : 80%
+- Python (pandas, numpy, matplotlib, seaborn) : 78%
+- Power BI : 82%
+- IBM SPSS / XLStat : 75%
+- Visualisation de donnees : 85%
+- Modelisation statistique / Econometrie : 80%
+- Suivi-Evaluation / Evaluation d'impact : 88%
+
+Experience
+- Assistante Administrative et Financiere - AMBATOVY (2022-Present)
+- Consultante Donnees Terrain - ONG Mahavila (2022)
+- Consultante Suivi-Evaluation - Direction Regionale de l'Agriculture (2019)
+- Stagiaire Analyse Economique - Cooperative Fanohana (2019)
+
+Langues
+Malgache : Langue maternelle
+Francais : C2
+Anglais : C1
+Allemand : A2`;
+      const blob = new Blob([cvText], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'CV-Iavetia-FOTSY.txt';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    const words = ['Data Analyst', 'Experte Python', 'Spécialiste Power BI', 'Chercheuse en Économétrie'];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function typeLoop() {
+      const word = words[wordIndex];
+      typedText.textContent = deleting ? word.slice(0, charIndex - 1) : word.slice(0, charIndex + 1);
+      charIndex += deleting ? -1 : 1;
+
+      let delay = deleting ? 48 : 82;
+      if (!deleting && charIndex === word.length) {
+        delay = 1300;
+        deleting = true;
+      } else if (deleting && charIndex === 0) {
+        deleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        delay = 350;
+      }
+
+      window.setTimeout(typeLoop, delay);
+    }
+    typeLoop();
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+
+    document.querySelectorAll('.reveal, .timeline-item').forEach((element) => revealObserver.observe(element));
+
+    const skillObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.skill-bar').forEach((bar) => {
+            bar.style.width = `${bar.dataset.width}%`;
+          });
+          skillObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.28 });
+    const skillList = document.querySelector('.skill-list');
+    if (skillList) skillObserver.observe(skillList);
+
+    function easeOutCubic(t) {
+      return 1 - Math.pow(1 - t, 3);
+    }
+
+    function animateCounter(counter) {
+      const target = Number(counter.dataset.target);
+      const duration = 2000;
+      const start = performance.now();
+
+      function update(now) {
+        const elapsed = Math.min((now - start) / duration, 1);
+        const value = Math.round(easeOutCubic(elapsed) * target);
+        counter.textContent = value;
+        if (elapsed < 1) requestAnimationFrame(update);
+      }
+
+      requestAnimationFrame(update);
+    }
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.counter').forEach(animateCounter);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.45 });
+    const statsGrid = document.querySelector('.stats-grid');
+    if (statsGrid) counterObserver.observe(statsGrid);
+
+    const projectData = {
+      market: {
+        title: 'Analyse E-Commerce AfriMarket',
+        tools: ['Python', 'pandas', 'seaborn', 'matplotlib'],
+        description: 'Pipeline de données complet sur plus de 10 000 lignes, conçu pour transformer un historique e-commerce brut en lecture stratégique utilisable par une équipe commerciale ou direction générale.',
+        bullets: [
+          'Nettoyage des champs, contrôle de qualité et structuration des variables d\'analyse.',
+          'Feature engineering pour enrichir les comportements clients, les catégories et les performances de vente.',
+          'Segmentation client et production de 9 visualisations professionnelles pour révéler les leviers de croissance.',
+          'Synthèse exécutive avec recommandations stratégiques orientées acquisition, fidélisation et rentabilité.'
+        ]
+      },
+      weather: {
+        title: 'Dashboard de Données Météorologiques',
+        tools: ['Python', 'API Open-Meteo', 'Architecture modulaire'],
+        description: 'Extraction et analyse automatisées de données météo pour Madagascar via API REST, avec une structure claire et des conventions en français pour faciliter la maintenance.',
+        bullets: [
+          'Connexion à l\'API Open-Meteo et récupération de séries temporelles exploitables.',
+          'Architecture modulaire séparant collecte, transformation, analyse statistique et visualisation.',
+          'Synthèses statistiques pour comparer températures, variations et tendances observées.',
+          'Visualisations adaptées aux besoins de lecture rapide pour suivi climatique local.'
+        ]
+      },
+      impact: {
+        title: 'Étude d\'Impact de l\'Aide au Développement',
+        tools: ['IBM SPSS', 'XLStat', 'Économétrie de panel'],
+        description: 'Recherche académique évaluant l\'impact causal de l\'aide publique au développement sur l\'économie malgache à partir de méthodes économétriques robustes.',
+        bullets: [
+          'Construction d\'un cadre d\'analyse autour de données macroéconomiques et institutionnelles.',
+          'Tests de causalité de Granger pour explorer la direction des relations entre variables.',
+          'Régressions multivariées et analyse de données de panel pour mesurer les effets estimés.',
+          'Restitution des résultats sous forme de lecture politique et économique exploitable.'
+        ]
+      }
+    };
+
+    const modal = document.getElementById('projectModal');
+    const modalCard = modal.querySelector('.modal-card');
+    const closeModalBtn = modal.querySelector('.modal-close');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalTools = document.getElementById('modalTools');
+    const modalDescription = document.getElementById('modalDescription');
+    const modalList = document.getElementById('modalList');
+    let lastFocusedElement = null;
+
+    function openModal(projectKey) {
+      const project = projectData[projectKey];
+      if (!project) return;
+      lastFocusedElement = document.activeElement;
+      modalTitle.textContent = project.title;
+      modalTools.innerHTML = project.tools.map((tool, index) => `<span class="pill ${index % 2 ? 'secondary' : ''}">${tool}</span>`).join('');
+      modalDescription.textContent = project.description;
+      modalList.innerHTML = project.bullets.map((item) => `<li>${item}</li>`).join('');
+      document.body.classList.add('modal-open');
+      modal.classList.add('open');
+      modalCard.focus();
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.classList.remove('modal-open');
+      if (lastFocusedElement) lastFocusedElement.focus();
+    }
+
+    document.querySelectorAll('[data-project]').forEach((button) => {
+      button.addEventListener('click', () => openModal(button.dataset.project));
+    });
+
+    closeModalBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (!modal.classList.contains('open')) return;
+      if (event.key === 'Escape') closeModal();
+      if (event.key !== 'Tab') return;
+
+      const focusable = [...modal.querySelectorAll('button, [href], input, textarea, [tabindex]:not([tabindex="-1"])')]
+        .filter((element) => !element.hasAttribute('disabled'));
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+
+    const canvas = document.getElementById('dataCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let canvasWidth = 0;
+    let canvasHeight = 0;
+
+    function resizeCanvas() {
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      canvasWidth = canvas.offsetWidth;
+      canvasHeight = canvas.offsetHeight;
+      canvas.width = Math.floor(canvasWidth * ratio);
+      canvas.height = Math.floor(canvasHeight * ratio);
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      createParticles();
+    }
+
+    function createParticles() {
+      const count = Math.max(34, Math.min(88, Math.floor(canvasWidth / 18)));
+      particles = Array.from({ length: count }, () => ({
+        x: Math.random() * canvasWidth,
+        y: Math.random() * canvasHeight,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 1.8 + 1
+      }));
+    }
+
+    function drawCanvas() {
+      ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+      ctx.fillStyle = 'rgba(0, 212, 170, 0.72)';
+      ctx.strokeStyle = 'rgba(0, 212, 170, 0.18)';
+      ctx.lineWidth = 1;
+
+      particles.forEach((p, index) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > canvasWidth) p.vx *= -1;
+        if (p.y < 0 || p.y > canvasHeight) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+
+        for (let i = index + 1; i < particles.length; i++) {
+          const other = particles[i];
+          const dx = p.x - other.x;
+          const dy = p.y - other.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 135) {
+            ctx.globalAlpha = 1 - distance / 135;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(other.x, other.y);
+            ctx.stroke();
+            ctx.globalAlpha = 1;
+          }
+        }
+      });
+
+      requestAnimationFrame(drawCanvas);
+    }
+
+    window.addEventListener('resize', () => debounceFrame(resizeCanvas), { passive: true });
+    resizeCanvas();
+    drawCanvas();
+  </script>
+</body>
+</html>
